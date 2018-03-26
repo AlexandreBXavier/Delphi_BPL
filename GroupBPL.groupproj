@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{65CC1AF8-A35D-441F-8B7D-0AC22A666555}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Main\Sample01.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Modelo\PkgModel.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="Mod01\Mod01.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Sample01">
+        <MSBuild Projects="Main\Sample01.dproj"/>
+    </Target>
+    <Target Name="Sample01:Clean">
+        <MSBuild Projects="Main\Sample01.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Sample01:Make">
+        <MSBuild Projects="Main\Sample01.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="PkgModel">
+        <MSBuild Projects="Modelo\PkgModel.dproj"/>
+    </Target>
+    <Target Name="PkgModel:Clean">
+        <MSBuild Projects="Modelo\PkgModel.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="PkgModel:Make">
+        <MSBuild Projects="Modelo\PkgModel.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Mod01">
+        <MSBuild Projects="Mod01\Mod01.dproj"/>
+    </Target>
+    <Target Name="Mod01:Clean">
+        <MSBuild Projects="Mod01\Mod01.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Mod01:Make">
+        <MSBuild Projects="Mod01\Mod01.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Sample01;PkgModel;Mod01"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Sample01:Clean;PkgModel:Clean;Mod01:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Sample01:Make;PkgModel:Make;Mod01:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>
